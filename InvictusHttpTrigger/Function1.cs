@@ -9,7 +9,7 @@ namespace InvictusHttpTrigger
     public class Function1
     {
         [FunctionName("Function1")]
-        public void Run([TimerTrigger("00:05:00")]TimerInfo myTimer, ILogger log)
+        public void Run([TimerTrigger("00:02:00")]TimerInfo myTimer, ILogger log)
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
             var http = new HttpClient();
