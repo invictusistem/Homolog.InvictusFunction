@@ -3,20 +3,19 @@ using System.Net.Http;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
+using static System.Net.WebRequestMethods;
 
-namespace InvictusHttpTrigger
+namespace FunctionApp1
 {
     public class Function1
     {
         [FunctionName("Function1")]
-        public void Run([TimerTrigger("00:02:00")]TimerInfo myTimer, ILogger log)
+        public void Run([TimerTrigger("0 */1 * * * *")]TimerInfo myTimer, ILogger log)
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
-            var http = new HttpClient();
 
+            var http = new HttpClient();
             var resp = http.GetAsync("https://invictus-api-hml.azurewebsites.net/api/dev/trigger").Result;
-            var resp = http.GetAsync("https://localhost:5001/api/dev/trigger").Result;
-        
         }
     }
 }
